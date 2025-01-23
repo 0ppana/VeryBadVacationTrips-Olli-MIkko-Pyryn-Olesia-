@@ -8,6 +8,13 @@
 
 
     <style>
+        button {
+            position: absolute;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: transform 0.1s ease;
+        }
+
         nav {
             background-color: #2c3e50;
             padding: 0.5rem;
@@ -103,6 +110,28 @@
 </head>
 
 <body>
+
+    <button id="followButton">Follow Me!</button>
+
+    <script>
+        const button = document.getElementById("followButton");
+
+        document.addEventListener("mousemove", (event) => {
+            const x = event.clientX + window.scrollX;
+            const y = event.clientY + window.scrollY;
+            const buttonWidth = button.offsetWidth;
+            const buttonHeight = button.offsetHeight;
+            const offsetX = 50;
+            const offsetY = 10;
+
+            // Ensure the button stays within the viewport boundaries
+            const newX = Math.min(window.innerWidth + window.scrollX - buttonWidth, Math.max(0, x - offsetX));
+            const newY = Math.min(window.innerHeight + window.scrollY - buttonHeight, Math.max(0, y - offsetY));
+
+            button.style.left = `${newX}px`;
+            button.style.top = `${newY}px`;
+        });
+    </script>
     <header>
         <h1>Welcome to Kuopio</h1>
     </header>
